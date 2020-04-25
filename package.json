@@ -1,13 +1,13 @@
 {
-  "name": "gatsby-source-git",
-  "version": "1.0.2",
+  "name": "@theowenyoung/gatsby-source-git",
+  "version": "1.0.7",
   "description": "Gatsby plugin for pulling files into Gatsby from Git repositories",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/stevetweeddale/gatsby-source-git.git"
+    "url": "https://github.com/theowenyoung/gatsby-source-git"
   },
   "keywords": [
     "gatsby",
@@ -21,9 +21,9 @@
     "gatsby": ">2.0.0-alpha"
   },
   "bugs": {
-    "url": "https://github.com/stevetweeddale/gatsby-source-git/issues"
+    "url": "https://github.com/theowenyoung/gatsby-source-git/issues"
   },
-  "homepage": "https://github.com/stevetweeddale/gatsby-source-git#readme",
+  "homepage": "https://github.com/theowenyoung/gatsby-source-git",
   "dependencies": {
     "fast-glob": "^2.2.3",
     "fs-extra": "^5.0.0",

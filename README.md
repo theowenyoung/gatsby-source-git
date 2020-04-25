@@ -1,5 +1,13 @@
 # gatsby-source-git
 
+Based on [gatsby-source-git](https://github.com/stevetweeddale/gatsby-source-git), remove default option `["--depth","1"]`, support custom `fetchOptions`
+
+You can use follow command to instead the [gatsby-source-git](https://github.com/stevetweeddale/gatsby-source-git):
+
+```bash
+npm install --save @theowenyoung/gatsby-source-git
+```
+
 Source plugin for pulling files into the Gatsby graph from abitrary Git repositories (hosted anywhere). This is useful if the markdown files you wish to render can't live within your gatsby codebase, or if need to aggregate content from disparate repositories.
 
 It clones the repo(s) you configure (a shallow clone, into your cache folder if
@@ -48,6 +56,7 @@ Ideally we'd use [nodegit](https://github.com/nodegit/nodegit), but it doesn't s
   gatsby-config.js. You will need to synchronise the branch of the local
   checkout yourself. On the plus side, it will prevent your local repo
   getting trashed when Gatsby clears the cache, which can speed things up.
+- `fetchOptions`, (optional): array, will be used as git fetch options, for example: `["--depth",1]`
 
 ### Example gatsby-config.js
 
