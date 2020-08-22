@@ -120,7 +120,7 @@ exports.sourceNodes = async (
   const createAndProcessNode = path => {
     return createFileNode(path, createNodeId, {
       name: name,
-      path: localPath
+      path: rootPath
     }).then(fileNode => {
       // Add a link to the git remote node
       fileNode.gitRemote___NODE = remoteId;
