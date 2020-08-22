@@ -1,6 +1,7 @@
 const Git = require("simple-git/promise");
 const fastGlob = require("fast-glob");
 const fs = require("fs");
+const path = require('path')
 const { createFileNode } = require("gatsby-source-filesystem/create-file-node");
 const GitUrlParse = require("git-url-parse");
 
