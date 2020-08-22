@@ -9,7 +9,7 @@ async function isAlreadyCloned(remote, path) {
     const existingRemote = await Git(path).listRemote(["--get-url"]);
     return existingRemote.trim() == remote.trim();
   } catch (error) {
-    console.log('error222', error);
+    console.error('error', error);
 
     return Promise.resolve(false);
   }
@@ -29,24 +29,15 @@ async function getRepo(path, remote, branch, options) {
   // If the directory doesn't exist or is empty, clone. This will be the case if
   // our config has changed because Gatsby trashes the cache dir automatically
   // in that case.
-  console.log('path', path);
-
-  if (fs.existsSync(path)) {
-    console.log('fs.readdirSync(path)', fs.readdirSync(path));
-
-  }
 
   if (!fs.existsSync(path) || fs.readdirSync(path).length === 0) {
     let opts = [];
     if (typeof branch == `string`) {
       opts.push(`--branch`, branch);
     }
-    console.log('first: remote, path, opts', remote, path, opts);
-
     await Git().clone(remote, path, opts);
     return Git(path);
   } else if (await isAlreadyCloned(remote, path)) {
-    console.log('second', path, branch, options);
     try {
       const repo = await Git(path);
       const target = await getTargetBranch(repo, branch);
@@ -77,20 +68,15 @@ exports.sourceNodes = async (
   { name, remote, branch, patterns = `**`, local, fetchOptions }
 ) => {
   const programDir = store.getState().program.directory;
-  console.log('programDir', programDir, local, name);
-
+  const parsedRemote = GitUrlParse(remote);
+  name = name || parsedRemote.name
   const localPath = local || require("path").join(
     programDir,
     `.cache`,
     `gatsby-source-git`,
+    parsedRemote.full_name,
     name
   );
-  console.log('localPath', localPath);
-
-  const parsedRemote = GitUrlParse(remote);
-  console.log('parsedRemote', parsedRemote);
-  console.log('localPath, remote, branch, fetchOptions', localPath, remote, branch, fetchOptions);
-
   let repo;
   try {
     repo = await getRepo(localPath, remote, branch, fetchOptions);
