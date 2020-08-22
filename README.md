@@ -2,6 +2,8 @@
 
 Based on [gatsby-source-git](https://github.com/stevetweeddale/gatsby-source-git), remove default option `["--depth","1"]`, support custom `fetchOptions`
 
+support option `rootDir`, you can specifify a root directory as your content directory
+
 You can use follow command to instead the [gatsby-source-git](https://github.com/stevetweeddale/gatsby-source-git):
 
 ```bash

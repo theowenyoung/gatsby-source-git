@@ -65,7 +65,7 @@ exports.sourceNodes = async (
     createContentDigest,
     reporter
   },
-  { name, remote, branch, patterns = `**`, local, fetchOptions }
+  { name, remote, branch, rootDir,patterns = `**`, local, fetchOptions }
 ) => {
   const programDir = store.getState().program.directory;
   const parsedRemote = GitUrlParse(remote);
@@ -89,9 +89,12 @@ exports.sourceNodes = async (
   delete parsedRemote.git_suffix;
   let ref = await repo.raw(["rev-parse", "--abbrev-ref", "HEAD"]);
   parsedRemote.ref = ref.trim();
-
+  let rootPath = localPath;
+  if(rootDir){
+    rootPath = path.resolve(localPath,rootDir)
+  }
   const repoFiles = await fastGlob(patterns, {
-    cwd: localPath,
+    cwd: rootPath,
     absolute: true
   });
 
